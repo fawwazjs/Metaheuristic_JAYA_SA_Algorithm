@@ -1,0 +1,65 @@
+name: Deploy ke GitHub Pages
+
+on:
+  # Deploy otomatis setiap push ke branch main
+  push:
+    branches: [main]
+  # Bisa juga dijalankan manual dari tab Actions
+  workflow_dispatch:
+
+# Izin minimum yang dibutuhkan GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Hanya satu deploy berjalan sekaligus; jangan batalkan deploy yang sedang jalan
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Konfigurasi GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Aktifkan Pages otomatis kalau belum di-set manual di Settings
+          enablement: true
+
+      - name: Unit test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy ke GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
