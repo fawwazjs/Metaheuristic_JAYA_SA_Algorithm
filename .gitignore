@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+.vite/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# QA / automation artifacts (screenshots, logs, scripts, extracted text)
+# Berisi path lokal (C:\Users\...) dan ~76 MB screenshot
+.qa/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & secrets (jangan pernah di-commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Test / coverage output
+coverage/
+.nyc_output/
+
+# Sumber materi berupa binary besar, tidak dipakai saat runtime/build
+Metaheuristik_compressed.pdf
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+
+00-PROMPT-UTAMA.md
+01-CONTENT.md
+02-DESIGN.md
+03-ANIMATION.md
