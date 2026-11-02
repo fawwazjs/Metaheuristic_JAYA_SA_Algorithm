@@ -75,12 +75,4 @@ $RECYCLE.BIN/
 *.orig
 *.rej
 
-# Bahan mentah / binary besar (tidak dipakai runtime & build)
-Metaheuristik_compressed.pdf
 
-# Dokumen kerja internal (prompt, catatan konten, desain, animasi)
-00-PROMPT-UTAMA.md
-01-CONTENT.md
-02-DESIGN.md
-03-ANIMATIONS.md
-03-ANIMATION.md
