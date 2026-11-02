@@ -446,8 +446,23 @@ export function EmberField({ count = 70, radius = 7 }: { count?: number; radius?
   )
 }
 
-/** Ikon jatuh bila WebGL tidak tersedia. */
-export function GlSceneFallback({ label }: { label: string }) {
+/** Fallback bila WebGL tidak tersedia: tampilkan ilustrasi 3D statis. */
+export function GlSceneFallback({ label, illustration }: { label: string; illustration?: ReactNode }) {
+  if (illustration) {
+    return (
+      <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(ellipse_at_50%_30%,#3b2513,#171008_75%)]">
+        <div className="absolute inset-0 [&>svg]:h-full [&>svg]:w-full">{illustration}</div>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent p-4 text-center">
+          <p className="font-heading text-[10px] uppercase tracking-[0.22em] text-gold-light/85">Ilustrasi 3D</p>
+          <p className="mt-1 font-body text-[13px] italic text-parchment-100/85">{label}</p>
+          <p className="mt-1 font-body text-[11px] text-parchment-300/60">
+            WebGL tidak tersedia di perangkat ini — ilustrasi statis ditampilkan sebagai gantinya.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_30%,#3b2513,#171008_75%)]">
       <div className="absolute inset-0 opacity-30">

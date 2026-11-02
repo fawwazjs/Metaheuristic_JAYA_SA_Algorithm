@@ -10,6 +10,7 @@ import {
   GlSceneFallback,
   useWebGLSupport,
 } from './scene'
+import { ForgeSceneIllustration } from './Illustrations'
 
 const LATTICE = 6
 const ATOM_COUNT = LATTICE * LATTICE * 3
@@ -106,13 +107,18 @@ export function AnnealingForge() {
             />
           </SceneCanvas>
         ) : (
-          <GlSceneFallback label="Batang logam yang dipanaskan dan kisi kristal" />
+          <GlSceneFallback
+            label="Batang logam yang dipanaskan dan kisi kristal"
+            illustration={<ForgeSceneIllustration className="h-full w-full" />}
+          />
         )}
-        <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center p-2">
-          <span className="rounded-sm border border-gold/25 bg-leather-900/70 px-2 py-1 font-body text-[10px] italic text-parchment-200/75">
-            Seret untuk memutar · Scroll untuk zoom
-          </span>
-        </div>
+        {supported && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center p-2">
+            <span className="rounded-sm border border-gold/25 bg-leather-900/70 px-2 py-1 font-body text-[10px] italic text-parchment-200/75">
+              Seret untuk memutar · Scroll untuk zoom
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="space-y-2.5 border-t border-gold/20 p-3 sm:p-4">

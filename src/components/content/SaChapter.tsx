@@ -7,10 +7,11 @@ import { DefinisiBlock, ProsCons, TraitCards } from './Blocks'
 import { SaSim, SaDriver } from '../sim/SaSim'
 import { ProbabilityCalc } from '../sim/Calculators'
 import { TaskSchedulingDemo } from '../sim/TaskSchedulingDemo'
-import { CrestSa, OrnamentDivider, IconAnvil } from '../ornaments/Ornaments'
+import { CrestSa, OrnamentDivider } from '../ornaments/Ornaments'
 import { useInViewport } from '../../lib/hooks'
 import { ParchmentCard } from '../ui/ParchmentCard'
 import { Tex } from '../math/Tex'
+import { ForgeSceneIllustration, ScenePlate, ScenePoster } from '../three/Illustrations'
 
 const AnnealingForge = lazy(() => import('../three/AnnealingForge').then((m) => ({ default: m.AnnealingForge })))
 
@@ -98,25 +99,61 @@ export function SaChapter() {
           <div className="text-gold/60">
             <OrnamentDivider motif="anvil" animate={false} />
           </div>
+
+          <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] lg:items-stretch">
+            <ScenePlate
+              eyebrow="Ilustrasi 3D · Pendinginan Logam"
+              caption="Batang logam berpijar di atas landasan; kisi atom menata diri saat temperatur turun."
+              illustration={<ForgeSceneIllustration className="block h-auto w-full" />}
+            />
+            <ParchmentCard className="p-4">
+              <p className="eyebrow">Keterangan gambar</p>
+              <h4 className="font-heading text-lg font-semibold text-leather-800">Dari panas ke kisi teratur</h4>
+              <ul className="mt-2 space-y-1.5 font-body text-[13px] leading-snug text-leather-700/90">
+                {[
+                  ['#fff8de', 'Putih-kuning', 'temperatur tinggi: atom bergetar acak dan kisi tidak teratur.'],
+                  ['#c8561e', 'Oranye–merah', 'temperatur menurun: atom mulai menempati posisi kisi.'],
+                  ['#5e6a73', 'Abu baja', 'temperatur rendah: kisi rapi dan energi mendekati minimum.'],
+                  ['#e3b64f', 'Percikan', 'analogi gerak termal yang makin redam seiring pendinginan.'],
+                ].map(([color, name, text]) => (
+                  <li key={name} className="flex items-start gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full border border-leather-700/35"
+                      style={{ backgroundColor: color }}
+                    />
+                    <span>
+                      <span className="font-semibold text-leather-800">{name}</span> {text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2.5 border-t border-leather-700/20 pt-2 font-body text-[12px] italic leading-snug text-leather-600">
+                Ilustrasi di samping adalah gambar statis. Panel di bawah menampilkan model 3D interaktif dengan
+                skedul pendinginan lambat, cepat, dan manual.
+              </p>
+            </ParchmentCard>
+          </div>
+
           <div className="mt-3">
             {forgeInView ? (
               <Suspense
                 fallback={
-                  <div className="flex h-[320px] items-center justify-center border border-gold/25 bg-leather-900/60">
-                    <span className="font-heading text-[10px] uppercase tracking-[0.2em] text-parchment-200">
-                      Memuat visualisasi…
-                    </span>
-                  </div>
+                  <ScenePoster
+                    illustration={<ForgeSceneIllustration className="block h-full w-full" />}
+                    label="Visualisasi 3D pendinginan logam"
+                    className="h-[300px]"
+                  />
                 }
               >
                 <AnnealingForge />
               </Suspense>
             ) : (
-              <div className="flex h-[320px] items-center justify-center border border-gold/25 bg-leather-900/40">
-                <span className="flex items-center gap-2 font-heading text-[10px] uppercase tracking-[0.2em] text-parchment-300/60">
-                  <IconAnvil size={14} /> Visualisasi dimuat saat terlihat
-                </span>
-              </div>
+              <ScenePoster
+                illustration={<ForgeSceneIllustration className="block h-full w-full" />}
+                label="Visualisasi 3D pendinginan logam"
+                className="h-[300px]"
+              />
             )}
           </div>
         </div>

@@ -17,6 +17,7 @@ import {
   domainFromWorld,
   worldFromDomain,
 } from './scene'
+import { JayaSceneIllustration } from './Illustrations'
 
 const SIZE = 10
 const HEIGHT = 1.7
@@ -89,13 +90,18 @@ export function JayaArena3D() {
             />
           </SceneCanvas>
         ) : (
-          <GlSceneFallback label="Visualisasi 3D populasi JAYA — kandidat bergerak menuju P_best dan menjauhi P_worst" />
+          <GlSceneFallback
+            label="Visualisasi 3D populasi JAYA — kandidat bergerak menuju P_best dan menjauhi P_worst"
+            illustration={<JayaSceneIllustration className="h-full w-full" />}
+          />
         )}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center p-2">
-          <span className="rounded-sm border border-gold/25 bg-leather-900/70 px-2 py-1 font-body text-[10px] italic text-parchment-200/75">
-            Seret untuk memutar · Scroll untuk zoom · Klik kandidat untuk memilih
-          </span>
-        </div>
+        {supported && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center p-2">
+            <span className="rounded-sm border border-gold/25 bg-leather-900/70 px-2 py-1 font-body text-[10px] italic text-parchment-200/75">
+              Seret untuk memutar · Scroll untuk zoom · Klik kandidat untuk memilih
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="grid gap-2 border-t border-gold/20 p-3 sm:grid-cols-[1fr_auto] sm:items-start sm:p-4">

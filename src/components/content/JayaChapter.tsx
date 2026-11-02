@@ -5,11 +5,12 @@ import { Stepper } from './Stepper'
 import { ContextCallout, DefinisiBlock, FlowChain, PhilosophyBlock, ProsCons, TraitCards, AccuracyNote } from './Blocks'
 import { JayaSim, JayaDriver } from '../sim/JayaSim'
 import { JayaUpdateCalculator } from '../sim/Calculators'
-import { CrestJaya, OrnamentDivider, IconCrown } from '../ornaments/Ornaments'
+import { CrestJaya, OrnamentDivider } from '../ornaments/Ornaments'
 import { ParchmentCard } from '../ui/ParchmentCard'
 import { useJayaStore } from '../../store/jayaStore'
 import { lazy, Suspense } from 'react'
 import { useInViewport } from '../../lib/hooks'
+import { JayaSceneIllustration, ScenePlate, ScenePoster } from '../three/Illustrations'
 
 const JayaArena3D = lazy(() => import('../three/JayaArena3D').then((m) => ({ default: m.JayaArena3D })))
 
@@ -105,25 +106,61 @@ export function JayaChapter() {
             <div className="text-gold/60">
               <OrnamentDivider motif="sword" animate={false} />
             </div>
+
+            <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] lg:items-stretch">
+              <ScenePlate
+                eyebrow="Ilustrasi 3D · Pergerakan Populasi JAYA"
+                caption="Lanskap Rastrigin isometrik: kandidat hijau bergerak menuju P_best (emas) dan menjauhi P_worst (merah)."
+                illustration={<JayaSceneIllustration className="block h-auto w-full" />}
+              />
+              <ParchmentCard className="p-4">
+                <p className="eyebrow">Keterangan gambar</p>
+                <h4 className="font-heading text-lg font-semibold text-leather-800">Membaca medan 3D</h4>
+                <ul className="mt-2 space-y-1.5 font-body text-[13px] leading-snug text-leather-700/90">
+                  {[
+                    ['#55744b', 'Bidak hijau', 'kandidat solusi pada populasi.'],
+                    ['#e3b64f', 'Bidak emas', 'P_best — solusi terbaik dengan pilar cahaya.'],
+                    ['#a8322a', 'Bidak merah', 'P_worst — solusi terburuk dengan cincin merah.'],
+                    ['#b8862b', 'Panah', 'arah tarik menuju P_best dan tolak dari P_worst.'],
+                  ].map(([color, name, text]) => (
+                    <li key={name} className="flex items-start gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full border border-leather-700/35"
+                        style={{ backgroundColor: color }}
+                      />
+                      <span>
+                        <span className="font-semibold text-leather-800">{name}</span> {text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-2.5 border-t border-leather-700/20 pt-2 font-body text-[12px] italic leading-snug text-leather-600">
+                  Ilustrasi di samping adalah gambar statis. Panel di bawah menampilkan medan yang sama secara
+                  interaktif: seret untuk memutar, scroll untuk zoom, dan klik kandidat untuk memilihnya.
+                </p>
+              </ParchmentCard>
+            </div>
+
             <div className="mt-3">
               {arenaInView ? (
                 <Suspense
                   fallback={
-                    <div className="flex h-[320px] items-center justify-center border border-gold/25 bg-leather-900/60">
-                      <span className="font-heading text-[10px] uppercase tracking-[0.2em] text-parchment-200">
-                        Memuat visualisasi…
-                      </span>
-                    </div>
+                    <ScenePoster
+                      illustration={<JayaSceneIllustration className="block h-full w-full" />}
+                      label="Visualisasi 3D populasi JAYA"
+                      className="h-[320px]"
+                    />
                   }
                 >
                   <JayaArena3D />
                 </Suspense>
               ) : (
-                <div className="flex h-[320px] items-center justify-center border border-gold/25 bg-leather-900/40">
-                  <span className="flex items-center gap-2 font-heading text-[10px] uppercase tracking-[0.2em] text-parchment-300/60">
-                    <IconCrown size={14} /> Visualisasi dimuat saat terlihat
-                  </span>
-                </div>
+                <ScenePoster
+                  illustration={<JayaSceneIllustration className="block h-full w-full" />}
+                  label="Visualisasi 3D populasi JAYA"
+                  className="h-[320px]"
+                />
               )}
             </div>
           </div>

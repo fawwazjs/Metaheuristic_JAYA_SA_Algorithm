@@ -1,17 +1,25 @@
 # Dependencies
 node_modules/
+.pnp/
+.pnp.js
 
 # Build output
 dist/
 dist-ssr/
+build/
 .vite/
-
-# TypeScript incremental build info
+.turbo/
+.cache/
 *.tsbuildinfo
 
-# QA / automation artifacts (screenshots, logs, scripts, extracted text)
-# Berisi path lokal (C:\Users\...) dan ~76 MB screenshot
+# QA / automation artifacts
+# .qa/ berisi screenshot besar, log, dan script audit dengan path lokal (C:\Users\...)
 .qa/
+test-results/
+playwright-report/
+.screenshots/
+screenshots/
+*.shot.png
 
 # Logs
 *.log
@@ -19,33 +27,60 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # Environment & secrets (jangan pernah di-commit)
 .env
 .env.*
 !.env.example
+*.local
 *.pem
 *.key
 *.p12
 *.pfx
+*.crt
+credentials.json
+secrets.json
+.netrc
+.npmrc
 
 # Test / coverage output
 coverage/
 .nyc_output/
+.eslintcache
+.prettiercache
 
-# Sumber materi berupa binary besar, tidak dipakai saat runtime/build
-Metaheuristik_compressed.pdf
-
-# OS & editor files
-.DS_Store
-Thumbs.db
-desktop.ini
-*.swp
-*~
+# Editor / IDE
 .idea/
 .vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
 
+# OS files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Temporary / backup files
+*.bak
+*.backup
+*.tmp
+*.temp
+*.orig
+*.rej
+
+# Bahan mentah / binary besar (tidak dipakai runtime & build)
+Metaheuristik_compressed.pdf
+
+# Dokumen kerja internal (prompt, catatan konten, desain, animasi)
 00-PROMPT-UTAMA.md
 01-CONTENT.md
 02-DESIGN.md
+03-ANIMATIONS.md
 03-ANIMATION.md
