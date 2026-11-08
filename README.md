@@ -223,14 +223,214 @@ Jalankan program dua kali (sekali untuk tiap nilai), lalu bandingkan baris terak
 === Mode: BASELINE | Makespan simulasi: 66.00 detik ===
 ```
 
-### Contoh output
+### Output dengan algoritma baseline cloudsim (roundrobin)
 
 ```
-Makespan estimasi SA: 24.12 detik
-...
-|Cloudlet| Status|DC|Host|Host PEs |VM|   VM PEs|CloudletLen|...|FinishTime|ExecTime
-|      13|SUCCESS| 1|   0|       16| 3|        2|       6263|...|      12.7|    12.6
-...
+================== Starting CloudSim Plus 8.0.0 ==================
+
+INFO  0.00: DatacenterSimple1 is starting...
+INFO  DatacenterBrokerSimple2 is starting...
+INFO  Entities started.
+INFO  0.00: DatacenterBrokerSimple2: List of 1 datacenters(s) received.
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 0 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 1 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 2 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 3 in DatacenterSimple1
+INFO  0.00: VmAllocationPolicySimple: Vm 0 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 1 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 2 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 3 has been allocated to Host 0/DC 1
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 0 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 1 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 2 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 3 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 4 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 5 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 6 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 7 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 8 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 9 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 10 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 11 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 12 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 13 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 14 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 15 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 16 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 17 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 18 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 19 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: All 20 waiting Cloudlets submitted to some VM.
+INFO  7.95: DatacenterBrokerSimple2: Cloudlet 15 finished in Vm 3 and returned to broker.
+INFO  8.33: DatacenterBrokerSimple2: Cloudlet 7 finished in Vm 3 and returned to broker.
+INFO  8.84: DatacenterBrokerSimple2: Cloudlet 19 finished in Vm 3 and returned to broker.
+INFO  10.43: DatacenterBrokerSimple2: Cloudlet 3 finished in Vm 3 and returned to broker.
+INFO  12.01: DatacenterBrokerSimple2: Cloudlet 11 finished in Vm 3 and returned to broker.
+INFO  15.86: DatacenterBrokerSimple2: Cloudlet 13 finished in Vm 1 and returned to broker.
+INFO  17.81: DatacenterBrokerSimple2: Cloudlet 14 finished in Vm 2 and returned to broker.
+INFO  19.55: DatacenterBrokerSimple2: Cloudlet 2 finished in Vm 2 and returned to broker.
+INFO  22.11: DatacenterBrokerSimple2: Cloudlet 6 finished in Vm 2 and returned to broker.
+INFO  22.54: DatacenterBrokerSimple2: Cloudlet 1 finished in Vm 1 and returned to broker.
+INFO  23.60: DatacenterBrokerSimple2: Cloudlet 10 finished in Vm 2 and returned to broker.
+INFO  24.96: DatacenterBrokerSimple2: Cloudlet 18 finished in Vm 2 and returned to broker.
+INFO  25.85: DatacenterBrokerSimple2: Cloudlet 9 finished in Vm 1 and returned to broker.
+INFO  28.96: DatacenterBrokerSimple2: Cloudlet 5 finished in Vm 1 and returned to broker.
+INFO  30.41: DatacenterBrokerSimple2: Cloudlet 17 finished in Vm 1 and returned to broker.
+INFO  50.32: DatacenterBrokerSimple2: Cloudlet 8 finished in Vm 0 and returned to broker.
+INFO  51.74: DatacenterBrokerSimple2: Cloudlet 12 finished in Vm 0 and returned to broker.
+INFO  62.72: DatacenterBrokerSimple2: Cloudlet 0 finished in Vm 0 and returned to broker.
+INFO  63.33: DatacenterBrokerSimple2: Cloudlet 4 finished in Vm 0 and returned to broker.
+INFO  66.00: DatacenterBrokerSimple2: Cloudlet 16 finished in Vm 0 and returned to broker.
+INFO  66.11: Processing last events before simulation shutdown.
+INFO  66.11: DatacenterBrokerSimple2 is shutting down...
+INFO  66.11: DatacenterBrokerSimple2: Requesting Vm 3 destruction.
+INFO  66.11: DatacenterBrokerSimple2: Requesting Vm 2 destruction.
+INFO  66.11: DatacenterBrokerSimple2: Requesting Vm 1 destruction.
+INFO  66.11: DatacenterBrokerSimple2: Requesting Vm 0 destruction.
+INFO  66.11: DatacenterSimple: Vm 3 destroyed on Host 0/DC 1. 
+INFO  66.11: DatacenterSimple: Vm 2 destroyed on Host 0/DC 1. 
+INFO  66.11: DatacenterSimple: Vm 1 destroyed on Host 0/DC 1. 
+INFO  66.11: DatacenterSimple: Vm 0 destroyed on Host 0/DC 1. 
+INFO  Simulation: No more future events
+
+INFO  CloudInformationService0: Notify all CloudSim Plus entities to shutdown.
+
+INFO  
+================== Simulation finished at time 66.11 ==================
+
+
+
+                                               SIMULATION RESULTS
+
+|Cloudlet| Status|DC|Host|Host PEs |VM|   VM PEs|CloudletLen|FinishedLen|CloudletPEs|StartTime|FinishTime|ExecTime
+|--------|-------|--|----|---------|--|---------|-----------|-----------|-----------|---------|----------|--------
+|      ID|       |ID|  ID|CPU cores|ID|CPU cores|         MI|         MI|  CPU cores|  Seconds|   Seconds| Seconds
+|      15|SUCCESS| 1|   0|       16| 3|        2|       6234|       6234|          1|      0.1|       7.9|     7.8
+|       7|SUCCESS| 1|   0|       16| 3|        2|       6606|       6606|          1|      0.1|       8.3|     8.2
+|      19|SUCCESS| 1|   0|       16| 3|        2|       7189|       7189|          1|      0.1|       8.8|     8.7
+|       3|SUCCESS| 1|   0|       16| 3|        2|      10313|      10313|          1|      0.1|      10.4|    10.3
+|      11|SUCCESS| 1|   0|       16| 3|        2|      13473|      13473|          1|      0.1|      12.0|    11.9
+|      13|SUCCESS| 1|   0|       16| 1|        2|       6263|       6263|          1|      0.1|      15.9|    15.8
+|      14|SUCCESS| 1|   0|       16| 2|        2|      10562|      10562|          1|      0.1|      17.8|    17.7
+|       2|SUCCESS| 1|   0|       16| 2|        2|      11847|      11847|          1|      0.1|      19.5|    19.4
+|       6|SUCCESS| 1|   0|       16| 2|        2|      14434|      14434|          1|      0.1|      22.1|    22.0
+|       1|SUCCESS| 1|   0|       16| 1|        2|       9588|       9588|          1|      0.1|      22.5|    22.4
+|      10|SUCCESS| 1|   0|       16| 2|        2|      16569|      16569|          1|      0.1|      23.6|    23.5
+|      18|SUCCESS| 1|   0|       16| 2|        2|      18596|      18596|          1|      0.1|      25.0|    24.9
+|       9|SUCCESS| 1|   0|       16| 1|        2|      11748|      11748|          1|      0.1|      25.8|    25.7
+|       5|SUCCESS| 1|   0|       16| 1|        2|      14904|      14904|          1|      0.1|      29.0|    28.9
+|      17|SUCCESS| 1|   0|       16| 1|        2|      16262|      16262|          1|      0.1|      30.4|    30.3
+|       8|SUCCESS| 1|   0|       16| 0|        2|       9978|       9978|          1|      0.1|      50.3|    50.2
+|      12|SUCCESS| 1|   0|       16| 0|        2|      10317|      10317|          1|      0.1|      51.7|    51.6
+|       0|SUCCESS| 1|   0|       16| 0|        2|      13985|      13985|          1|      0.1|      62.7|    62.6
+|       4|SUCCESS| 1|   0|       16| 0|        2|      14254|      14254|          1|      0.1|      63.3|    63.2
+|      16|SUCCESS| 1|   0|       16| 0|        2|      15592|      15592|          1|      0.1|      66.0|    65.9
+
+=== Mode: BASELINE | Makespan simulasi: 66.00 detik ===
+```
+
+### Output dengan algoritma SA
+```
+================== Starting CloudSim Plus 8.0.0 ==================
+
+INFO  0.00: DatacenterSimple1 is starting...
+INFO  DatacenterBrokerSimple2 is starting...
+INFO  Entities started.
+INFO  0.00: DatacenterBrokerSimple2: List of 1 datacenters(s) received.
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 0 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 1 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 2 in DatacenterSimple1
+INFO  0.00: DatacenterBrokerSimple2: Trying to create Vm 3 in DatacenterSimple1
+INFO  0.00: VmAllocationPolicySimple: Vm 0 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 1 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 2 has been allocated to Host 0/DC 1
+INFO  0.00: VmAllocationPolicySimple: Vm 3 has been allocated to Host 0/DC 1
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 0 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 1 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 2 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 3 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 4 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 5 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 6 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 7 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 8 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 9 to Vm 0 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 10 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 11 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 12 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 13 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 14 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 15 to Vm 1 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 16 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 17 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 18 to Vm 2 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: Sending Cloudlet 19 to Vm 3 in Host 0/DC 1.
+INFO  0.10: DatacenterBrokerSimple2: All 20 waiting Cloudlets submitted to some VM.
+INFO  12.74: DatacenterBrokerSimple2: Cloudlet 13 finished in Vm 3 and returned to broker.
+INFO  14.37: DatacenterBrokerSimple2: Cloudlet 19 finished in Vm 3 and returned to broker.
+INFO  15.82: DatacenterBrokerSimple2: Cloudlet 15 finished in Vm 1 and returned to broker.
+INFO  16.19: DatacenterBrokerSimple2: Cloudlet 1 finished in Vm 2 and returned to broker.
+INFO  16.57: DatacenterBrokerSimple2: Cloudlet 7 finished in Vm 1 and returned to broker.
+INFO  19.07: DatacenterBrokerSimple2: Cloudlet 3 finished in Vm 3 and returned to broker.
+INFO  19.07: DatacenterBrokerSimple2: Cloudlet 12 finished in Vm 3 and returned to broker.
+INFO  21.43: DatacenterBrokerSimple2: Cloudlet 11 finished in Vm 2 and returned to broker.
+INFO  21.65: DatacenterBrokerSimple2: Cloudlet 8 finished in Vm 1 and returned to broker.
+INFO  22.27: DatacenterBrokerSimple2: Cloudlet 14 finished in Vm 1 and returned to broker.
+INFO  22.38: DatacenterBrokerSimple2: Cloudlet 6 finished in Vm 2 and returned to broker.
+INFO  22.78: DatacenterBrokerSimple2: Cloudlet 0 finished in Vm 3 and returned to broker.
+INFO  23.50: DatacenterBrokerSimple2: Cloudlet 5 finished in Vm 3 and returned to broker.
+INFO  23.61: DatacenterBrokerSimple2: Cloudlet 17 finished in Vm 2 and returned to broker.
+INFO  23.72: DatacenterBrokerSimple2: Cloudlet 9 finished in Vm 0 and returned to broker.
+INFO  23.83: DatacenterBrokerSimple2: Cloudlet 16 finished in Vm 3 and returned to broker.
+INFO  23.94: DatacenterBrokerSimple2: Cloudlet 2 finished in Vm 0 and returned to broker.
+INFO  24.32: DatacenterBrokerSimple2: Cloudlet 10 finished in Vm 3 and returned to broker.
+INFO  25.20: DatacenterBrokerSimple2: Cloudlet 18 finished in Vm 2 and returned to broker.
+INFO  25.96: DatacenterBrokerSimple2: Cloudlet 4 finished in Vm 1 and returned to broker.
+INFO  26.07: Processing last events before simulation shutdown.
+INFO  26.07: DatacenterBrokerSimple2 is shutting down...
+INFO  26.07: DatacenterBrokerSimple2: Requesting Vm 3 destruction.
+INFO  26.07: DatacenterBrokerSimple2: Requesting Vm 2 destruction.
+INFO  26.07: DatacenterBrokerSimple2: Requesting Vm 1 destruction.
+INFO  26.07: DatacenterBrokerSimple2: Requesting Vm 0 destruction.
+INFO  26.07: DatacenterSimple: Vm 3 destroyed on Host 0/DC 1. 
+INFO  26.07: DatacenterSimple: Vm 2 destroyed on Host 0/DC 1. 
+INFO  26.07: DatacenterSimple: Vm 1 destroyed on Host 0/DC 1. 
+INFO  26.07: DatacenterSimple: Vm 0 destroyed on Host 0/DC 1. 
+INFO  Simulation: No more future events
+
+INFO  CloudInformationService0: Notify all CloudSim Plus entities to shutdown.
+
+INFO  
+================== Simulation finished at time 26.07 ==================
+
+
+
+                                               SIMULATION RESULTS
+
+|Cloudlet| Status|DC|Host|Host PEs |VM|   VM PEs|CloudletLen|FinishedLen|CloudletPEs|StartTime|FinishTime|ExecTime
+|--------|-------|--|----|---------|--|---------|-----------|-----------|-----------|---------|----------|--------
+|      ID|       |ID|  ID|CPU cores|ID|CPU cores|         MI|         MI|  CPU cores|  Seconds|   Seconds| Seconds
+|      13|SUCCESS| 1|   0|       16| 3|        2|       6263|       6263|          1|      0.1|      12.7|    12.6
+|      19|SUCCESS| 1|   0|       16| 3|        2|       7189|       7189|          1|      0.1|      14.4|    14.3
+|      15|SUCCESS| 1|   0|       16| 1|        2|       6234|       6234|          1|      0.1|      15.8|    15.7
+|       1|SUCCESS| 1|   0|       16| 2|        2|       9588|       9588|          1|      0.1|      16.2|    16.1
+|       7|SUCCESS| 1|   0|       16| 1|        2|       6606|       6606|          1|      0.1|      16.6|    16.5
+|       3|SUCCESS| 1|   0|       16| 3|        2|      10313|      10313|          1|      0.1|      19.1|    19.0
+|      12|SUCCESS| 1|   0|       16| 3|        2|      10317|      10317|          1|      0.1|      19.1|    19.0
+|      11|SUCCESS| 1|   0|       16| 2|        2|      13473|      13473|          1|      0.1|      21.4|    21.3
+|       8|SUCCESS| 1|   0|       16| 1|        2|       9978|       9978|          1|      0.1|      21.7|    21.5
+|      14|SUCCESS| 1|   0|       16| 1|        2|      10562|      10562|          1|      0.1|      22.3|    22.2
+|       6|SUCCESS| 1|   0|       16| 2|        2|      14434|      14434|          1|      0.1|      22.4|    22.3
+|       0|SUCCESS| 1|   0|       16| 3|        2|      13985|      13985|          1|      0.1|      22.8|    22.7
+|       5|SUCCESS| 1|   0|       16| 3|        2|      14904|      14904|          1|      0.1|      23.5|    23.4
+|      17|SUCCESS| 1|   0|       16| 2|        2|      16262|      16262|          1|      0.1|      23.6|    23.5
+|       9|SUCCESS| 1|   0|       16| 0|        2|      11748|      11748|          1|      0.1|      23.7|    23.6
+|      16|SUCCESS| 1|   0|       16| 3|        2|      15592|      15592|          1|      0.1|      23.8|    23.7
+|       2|SUCCESS| 1|   0|       16| 0|        2|      11847|      11847|          1|      0.1|      23.9|    23.8
+|      10|SUCCESS| 1|   0|       16| 3|        2|      16569|      16569|          1|      0.1|      24.3|    24.2
+|      18|SUCCESS| 1|   0|       16| 2|        2|      18596|      18596|          1|      0.1|      25.2|    25.1
+|       4|SUCCESS| 1|   0|       16| 1|        2|      14254|      14254|          1|      0.1|      26.0|    25.9
+
 === Mode: SIMULATED ANNEALING | Makespan simulasi: 25.96 detik ===
 ```
 
