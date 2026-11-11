@@ -15,6 +15,8 @@ const NAV_ITEMS = [
 ]
 
 const IDS = NAV_ITEMS.map((item) => item.id)
+/** Halaman terpisah berisi hasil simulasi CloudSim (bukan anchor di halaman ini). */
+const CLOUDSIM_HREF = `${import.meta.env.BASE_URL}cloudsim/`
 
 export function Navbar() {
   const active = useScrollSpy(IDS)
@@ -78,6 +80,14 @@ export function Navbar() {
                 </a>
               )
             })}
+            <span aria-hidden="true" className="mx-1.5 h-6 w-px bg-gold/30" />
+            <a
+              href={CLOUDSIM_HREF}
+              className="flex min-h-[44px] flex-col items-center justify-center px-2.5 py-1 text-parchment-200/75 transition-colors duration-300 hover:text-gold-light"
+            >
+              <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em]">CloudSim</span>
+              <span className="font-body text-[9px] italic tracking-wide text-parchment-300/45">Simulasi JAYA</span>
+            </a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -152,6 +162,16 @@ export function Navbar() {
                     </a>
                   )
                 })}
+                <a
+                  href={CLOUDSIM_HREF}
+                  className="col-span-2 flex min-h-[48px] items-center gap-2 border border-leather-700/15 px-3 py-2 text-leather-700 transition-colors hover:border-gold/40 hover:bg-parchment-50/50"
+                >
+                  <FleurDeLis className="h-4 w-4 shrink-0 text-gold/60" />
+                  <span>
+                    <span className="block font-heading text-[10px] font-semibold uppercase tracking-[0.16em]">CloudSim</span>
+                    <span className="block text-[11px] italic text-leather-600/75">Hasil simulasi JAYA (halaman terpisah)</span>
+                  </span>
+                </a>
               </div>
               <div className="mt-3 flex items-center justify-between border-t border-leather-700/15 pt-2">
                 <span className="font-heading text-[8px] uppercase tracking-[0.2em] text-leather-600/70">

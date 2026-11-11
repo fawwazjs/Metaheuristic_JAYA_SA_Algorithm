@@ -57,10 +57,11 @@ export function Footer() {
             </h3>
             <ul className="mt-3 space-y-1 text-[13px]">
               {[
-                { href: '#jaya', label: 'Algoritma JAYA' },
-                { href: '#sa', label: 'Simulated Annealing' },
-                { href: '#arena', label: 'Perbandingan' },
-                { href: '#arsip', label: 'Referensi' },
+                { href: `${import.meta.env.BASE_URL}#jaya`, label: 'Algoritma JAYA' },
+                { href: `${import.meta.env.BASE_URL}#sa`, label: 'Simulated Annealing' },
+                { href: `${import.meta.env.BASE_URL}#arena`, label: 'Perbandingan' },
+                { href: `${import.meta.env.BASE_URL}#arsip`, label: 'Referensi' },
+                { href: `${import.meta.env.BASE_URL}cloudsim/`, label: 'Simulasi CloudSim JAYA' },
               ].map((item) => (
                 <li key={item.href}>
                   <a href={item.href} className="text-parchment-200/80 transition-colors hover:text-gold-light">

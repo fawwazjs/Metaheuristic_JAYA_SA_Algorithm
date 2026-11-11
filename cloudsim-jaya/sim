@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# CLI simulasi JAYA di CloudSim Plus. Build sekali dulu: mvn -q package
+set -euo pipefail
+cd "$(dirname "$0")"
+JAR=target/cloudsim-jaya.jar
+if [[ ! -f "$JAR" ]]; then
+  echo "File $JAR belum ada. Build dulu: mvn -q package" >&2
+  exit 1
+fi
+# Wizard dan tampilan live hanya dipakai bila stdin dan stdout terhubung ke terminal.
+TTY=0
+if [[ -t 0 && -t 1 ]]; then
+  TTY=1
+fi
+COLUMNS_NOW=$(tput cols 2>/dev/null || echo 80)
+exec java -Dsim.tty="$TTY" -Dsim.columns="$COLUMNS_NOW" -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 \
+  -jar "$JAR" "$@"

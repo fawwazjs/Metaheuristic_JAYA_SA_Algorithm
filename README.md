@@ -16,6 +16,7 @@ Tema visualnya adalah **perkamen, kulit, dan emas** dengan ornamen klasik yang s
 - [Ringkasan fitur](#ringkasan-fitur)
 - [Teknologi](#teknologi)
 - [Menjalankan proyek](#menjalankan-proyek)
+- [Simulasi CloudSim JAYA](#simulasi-cloudsim-jaya)
 - [Struktur halaman](#struktur-halaman)
 - [Struktur folder](#struktur-folder)
 - [Arsitektur kode](#arsitektur-kode)
@@ -47,6 +48,8 @@ Tema visualnya adalah **perkamen, kulit, dan emas** dengan ornamen klasik yang s
 | Visualisasi 3D | Hero landscape, tempa logam (annealing), dan arena populasi JAYA — semuanya bisa diputar/zoom. |
 | Reproducible | Semua keacakan memakai RNG ber-seed (mulberry32) sehingga hasil dapat diulang. |
 | Aksesibilitas | Fokus keyboard terlihat, `aria-label` pada kontrol, dukungan `prefers-reduced-motion`, fallback tanpa WebGL. |
+| Halaman `/cloudsim/` | Hasil simulasi JAYA vs SA vs Sufferage vs Round Robin di CloudSim Plus: replay per iterasi, grafik konvergensi, beban VM, tren TC1/TC2, tabel metrik, validasi. |
+| CLI `./sim` | Simulasi CloudSim sungguhan di terminal: wizard, tampilan live (progress, sparkline makespan, beban VM per datacenter), dan tabel hasil. |
 
 ---
 
@@ -64,7 +67,16 @@ Tema visualnya adalah **perkamen, kulit, dan emas** dengan ornamen klasik yang s
 | Unit test | Vitest 2 |
 | Visualisasi 2D | Canvas 2D (heatmap lanskap, bidak, panah) + SVG (grafik, ilustrasi) |
 
-Tidak ada backend. Seluruh perhitungan algoritma berjalan di sisi klien.
+Tidak ada backend. Seluruh perhitungan algoritma pada halaman materi berjalan di sisi klien.
+
+Simulasi CloudSim dijalankan terpisah lewat CLI Java di `cloudsim-jaya/`:
+
+| Lapisan | Pustaka |
+| --- | --- |
+| Bahasa dan build | Java 17 (release 17), Maven, fat-jar `maven-shade-plugin` |
+| Simulator | CloudSim Plus 8.0.0 (`org.cloudsimplus:cloudsim-plus`) |
+| Unit test | JUnit 5 |
+| Tampilan terminal | Kode ANSI manual tanpa library tambahan |
 
 ---
 
@@ -87,6 +99,64 @@ npm run test:watch # mode watch
 ```
 
 > Catatan: `npm run build` menjalankan `tsc -b` lebih dulu, jadi error TypeScript akan menggagalkan build.
+
+---
+
+## Simulasi CloudSim JAYA
+
+Selain halaman materi (`/`), repo ini memuat bagian kedua: **penjadwalan task dengan JAYA di CloudSim Plus 8.0.0**, dibandingkan dengan Simulated Annealing, Sufferage, dan Round Robin. Bagian ini terdiri dari dua bagian yang saling melengkapi:
+
+| Bagian | Fungsi | Lokasi |
+| --- | --- | --- |
+| **CLI simulasi** (Java 17, Maven) | Menjalankan CloudSim sungguhan. Ada wizard dan tampilan live di terminal: makespan yang turun, beban setiap VM, dan validasi CloudSim. | [`cloudsim-jaya/`](cloudsim-jaya/README.md) |
+| **Halaman `/cloudsim/`** (React) | Etalase hasil 16 skenario resmi: replay pencarian JAYA per iterasi, grafik konvergensi, beban VM, perbandingan TC1/TC2, tabel metrik, dan validasi CloudSim. | `cloudsim/index.html` dan `src/cloudsim/` |
+| Data penghubung | JSON yang ditulis `./sim run` lalu dibaca halaman | `public/data/cloudsim/` (`summary.json`, `replay/*.json`) |
+
+Halaman `/cloudsim/` **statis**: setiap klik hanya membuka data yang sudah jadi, dan tidak ada simulasi yang berjalan di browser. Karena itu halaman ini tetap berjalan di GitHub Pages tanpa Java: **https://fawwazjs.github.io/Metaheuristic_JAYA_SA_Algorithm/cloudsim/**. Simulasi yang bisa ditonton langsung ada di terminal.
+
+![Halaman /cloudsim/: ringkasan dan temuan utama](docs/images/cloudsim/01-ringkasan-temuan.jpg)
+
+![Halaman /cloudsim/: replay pencarian JAYA dan grafik konvergensi](docs/images/cloudsim/03-replay-pencarian.jpg)
+
+Screenshot lain (lingkungan simulasi dan perbandingan algoritma) ada di [README CLI](cloudsim-jaya/README.md#halaman-website-cloudsim).
+
+### Mencoba website dan CLI bersamaan
+
+```bash
+# Terminal 1: website
+npm run dev                      # buka http://localhost:5173/cloudsim/
+
+# Terminal 2: CLI (target/cloudsim-jaya.jar sudah ada; build ulang dengan mvn -q package bila perlu)
+cd cloudsim-jaya
+./sim                            # wizard: pilih dataset, VM, algoritma, seed, lalu tonton prosesnya
+./sim run                        # 16 skenario resmi (±4,5 menit), lalu refresh halaman
+```
+
+Hasil tersimpan di dua tempat yang berbeda:
+
+| Perintah | Hasil disimpan di | Muncul di halaman? |
+| --- | --- | --- |
+| `./sim run` (16 skenario resmi, 352 run) | `cloudsim-jaya/results/` dan `public/data/cloudsim/` | Ya, setelah refresh |
+| `./sim` / `./sim custom` (uji coba) | `cloudsim-jaya/results/custom/<id>/` (tidak ikut git) | Tidak, hanya di terminal |
+
+### Contoh untuk demo
+
+Angka hasilnya selalu sama, karena seed tetap. Penjelasan lengkap, cuplikan layar terminal, dan poin yang bisa disampaikan ke dosen ada di [panduan demo](cloudsim-jaya/README.md#panduan-demo-4-contoh-2-jaya-2-sa).
+
+| # | Perintah (dari folder `cloudsim-jaya`) | Yang ditunjukkan | Hasil |
+| --- | --- | --- | --- |
+| 1 | `./sim custom --dataset gocj --tasks 300 --vms 20 --algo jaya --runs 3` | JAYA: P_best dan P_worst menyempit | 1.702,1 ± 21,7 s |
+| 2 | `./sim custom --dataset nasa --tasks 750 --vms 50 --algo jaya,rr --runs 1` | JAYA mencapai batas mutlak job terbesar di dataset paper | JAYA 874.160 s, RR 1.409.838 s |
+| 3 | `./sim custom --dataset gocj --tasks 300 --vms 20 --algo sa --runs 3` | SA pada skenario yang sama dengan contoh 1 | 1.002,3 ± 6,0 s (41% lebih rendah dari JAYA) |
+| 4 | `./sim custom --dataset gocj --tasks 750 --vms 10 --algo sa,sufferage,rr --runs 3` | SA hanya 0,26% di atas batas teoretis | SA 4.781,2 s, Sufferage 4.915,8 s, RR 20.326 s |
+
+### Temuan utama (352 run, semua tervalidasi di CloudSim)
+
+- **GoCJ:** SA tercepat di 14 dari 15 skenario. JAYA rata-rata 2,3 kali makespan SA, tetapi 58% lebih rendah dari Round Robin.
+- **NASA:** JAYA mencapai makespan terendah (874.160 s, batas job terbesar) di semua seed, tetapi waktu responsnya paling buruk.
+- **Validasi:** semua cloudlet berstatus SUCCESS, dan selisih evaluator dengan CloudSim paling besar 0,29%.
+
+Alamat `/cloudsim` tanpa garis miring dialihkan ke `/cloudsim/` di dev dan preview server; GitHub Pages melakukan hal yang sama.
 
 ---
 
@@ -133,16 +203,20 @@ Navbar memiliki progress bar scroll (`useScroll` + `useSpring`) dan scroll-spy (
 │   ├── store/
 │   │   ├── jayaStore.ts        # state simulator JAYA (zustand)
 │   │   └── saStore.ts          # state simulator SA (zustand)
-│   └── components/
-│       ├── layout/             # Navbar, Footer, SectionFrame, SubHeading
-│       ├── content/            # Hero, Sections, JayaChapter, SaChapter, Stepper, Blocks, Plates
-│       ├── sim/                # JayaSim, SaSim, CompareArena, TaskSchedulingDemo, Calculators, canvas
-│       ├── three/              # HeroLandscape, AnnealingForge, JayaArena3D, scene, Illustrations
-│       ├── ui/                 # Controls (Lever/Segmented/...), ParchmentCard, Reveal, WaxSealButton
-│       ├── ornaments/          # ikon, crest, divider, torch, partikel bara
-│       └── math/Tex.tsx        # renderer KaTeX
-├── public/                     # favicon.svg, .nojekyll
-├── .github/workflows/          # konfigurasi CI
+│   ├── components/
+│   │   ├── layout/             # Navbar, Footer, SectionFrame, SubHeading
+│   │   ├── content/            # Hero, Sections, JayaChapter, SaChapter, Stepper, Blocks, Plates
+│   │   ├── sim/                # JayaSim, SaSim, CompareArena, TaskSchedulingDemo, Calculators, canvas
+│   │   ├── three/              # HeroLandscape, AnnealingForge, JayaArena3D, scene, Illustrations
+│   │   ├── ui/                 # Controls (Lever/Segmented/...), ParchmentCard, Reveal, WaxSealButton
+│   │   ├── ornaments/          # ikon, crest, divider, torch, partikel bara
+│   │   └── math/Tex.tsx        # renderer KaTeX
+│   └── cloudsim/               # halaman /cloudsim/: CloudSimPage, data.ts, replay.ts (+ tes), usePlayer, components/
+├── cloudsim/index.html         # entry HTML kedua untuk halaman /cloudsim/
+├── cloudsim-jaya/              # CLI Java: simulasi JAYA/SA/Sufferage/RR di CloudSim Plus (lihat README-nya)
+├── public/                     # favicon.svg, .nojekyll, data/cloudsim/ (JSON hasil ./sim run)
+├── docs/images/cloudsim/       # screenshot halaman /cloudsim/ untuk README
+├── .github/workflows/          # deploy GitHub Pages (npm test + npm run build)
 ├── .qa/                        # skrip audit browser + screenshot (git-ignored)
 ├── 00-PROMPT-UTAMA.md          # brief proyek
 ├── 01-CONTENT.md               # materi asli (sumber kebenaran)
@@ -510,7 +584,7 @@ Semua di `components/ornaments/Ornaments.tsx`, dibuat orisinal dengan SVG:
 
 ## Pengujian
 
-`npm test` menjalankan `src/lib/algorithms/algorithms.test.ts` dengan Vitest (environment `node`). Cakupan:
+`npm test` menjalankan dua berkas tes Vitest (environment `node`): `src/lib/algorithms/algorithms.test.ts` untuk halaman materi, dan `src/cloudsim/replay.test.ts` untuk logika halaman `/cloudsim/` (skala sumbu, pencarian titik, format angka, dan temuan utama). CLI Java punya 117 tes JUnit sendiri (`cd cloudsim-jaya && mvn test`), dijelaskan di [README CLI](cloudsim-jaya/README.md#tes). Cakupan tes halaman materi:
 
 1. **Format angka Indonesia** — koma desimal, titik ribuan, minus tipografis, nilai tak hingga.
 2. **Pembaruan JAYA** — contoh slide `X=2, P_best=3, P_worst=1, r₁=r₂=0,5` menghasilkan `3`; memastikan `|X|` benar-benar dipakai.
@@ -562,7 +636,9 @@ Angka contoh telah diverifikasi otomatis oleh unit test: JAYA → 3; SA: `C₁ =
 
 - **`base`** — dev server di `/`, build produksi memakai prefix nama repo (`/Metaheuristic.../`) agar aset tidak 404 saat disajikan dari sub-path. Ubah konstanta `REPO_NAME` bila nama repo berubah; untuk domain sendiri atau user site, set menjadi `''`.
 - **`build.target = 'es2020'`**, `cssCodeSplit: true`.
-- **`manualChunks`** — memisahkan `three`, `katex`, dan `framer-motion` menjadi chunk terpisah.
+- **Dua halaman (multi-page)** — `rollupOptions.input` berisi `index.html` (materi) dan `cloudsim/index.html` (hasil CloudSim). Plugin kecil `cloudsimTrailingSlash` mengalihkan `/cloudsim` ke `/cloudsim/` di dev dan preview server.
+- **`manualChunks`** (berbentuk fungsi) — memisahkan `react`, `three`/`@react-three`, `framer-motion`, dan `katex` menjadi chunk terpisah, sehingga halaman `/cloudsim/` tidak ikut mengunduh three.js.
+- **`vite preview`** memakai base yang sama dengan GitHub Pages, jadi `npm run build && npm run preview` meniru situs yang dideploy.
 - **`test`** — environment `node`, mencakup `src/**/*.test.ts`.
 
 TypeScript memakai konfigurasi ketat: `strict`, `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`, `noEmit`, `moduleResolution: bundler`.
@@ -575,5 +651,7 @@ Proyek akademik Kelompok 4 Kelas C, Institut Teknologi Sepuluh Nopember. Materi 
 
 1. Kaushik Mishra, Jharashree Pati, Santosh Kumar Majhi (2020). *A dynamic load scheduling in IaaS cloud using binary JAYA algorithm.* Journal of King Saud University – Computer and Information Sciences, 34 (2022), 4914–4930.
 2. Esra Celik, Deniz Dal (2021). *A novel simulated annealing-based optimization approach for cluster-based task scheduling.* Cluster Computing (2021) 24, 2927–2956.
+
+Simulasi CloudSim memakai dataset GoCJ (Hussain & Aleem, 2018; CC BY 4.0) dan log NASA Ames iPSC/860 1993 dari Parallel Workloads Archive; sitasi lengkapnya ada di [README CLI](cloudsim-jaya/README.md#referensi).
 
 Seluruh ornamen, tekstur, dan ilustrasi dibuat sendiri dengan CSS, SVG, dan canvas.

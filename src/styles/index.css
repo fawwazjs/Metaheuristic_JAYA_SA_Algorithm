@@ -25,6 +25,18 @@
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   --noise-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   --ease-quill: cubic-bezier(0.22, 0.8, 0.3, 1);
+
+  /* Warna identitas algoritma di grafik halaman /cloudsim/. Satu keluarga dengan
+     forest/ember/steel/gold, tetapi dinaikkan kromanya dan dipisah kecerahannya agar
+     lolos validasi palet dataviz terhadap --chart-surface (CVD ΔE terburuk 9,4; kontras ≥ 3:1). */
+  --algo-jaya: #1f6b3a;
+  --algo-sa: #d46a22;
+  --algo-sufferage: #3e6fb8;
+  --algo-rr: #9c7a14;
+  --algo-other: #6b5a45;
+  --chart-surface: var(--parchment-50);
+  --chart-grid: rgba(78, 49, 25, 0.14);
+  --chart-axis: rgba(78, 49, 25, 0.5);
 }
 
 @layer base {
@@ -604,5 +616,40 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+/* Halaman /cloudsim/: permukaan grafik datar (warna yang dipakai validasi palet),
+   tabel angka, dan kontrol pemutar replay. */
+@layer components {
+  .chart-surface {
+    background-color: var(--chart-surface);
+    border: 1px solid rgba(107, 68, 35, 0.22);
+    box-shadow: 0 1px 2px rgba(53, 33, 15, 0.06);
+  }
+
+  .data-table {
+    @apply border-collapse font-body text-[14px] text-ink;
+  }
+  .data-table th,
+  .data-table td {
+    @apply whitespace-nowrap border-b border-leather-700/15 px-3 py-2 text-left align-baseline;
+  }
+  .data-table thead th {
+    @apply font-heading text-[10px] font-semibold uppercase tracking-[0.12em] text-leather-700;
+  }
+  .data-table tbody th {
+    @apply font-body font-semibold text-leather-800;
+  }
+  .data-table td {
+    @apply font-mono text-[12.5px] tabular-nums;
+  }
+
+  .player-button {
+    @apply inline-flex h-11 w-11 items-center justify-center border border-leather-700/35 text-leather-800 transition-colors hover:bg-parchment-200/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold;
+  }
+
+  .replay-range {
+    @apply h-11 cursor-pointer;
+    accent-color: var(--algo-jaya);
   }
 }

@@ -76,3 +76,14 @@ $RECYCLE.BIN/
 *.rej
 
 
+
+# CLI simulasi CloudSim JAYA (cloudsim-jaya/)
+cloudsim-jaya/target/
+# Salinan JSON sebelum disalin ke public/data/cloudsim/; dibuat ulang setiap ./sim run
+cloudsim-jaya/results/web/
+# Hasil uji coba kustom (./sim dan ./sim custom) hanya untuk laptop masing-masing
+cloudsim-jaya/results/custom/
+public/data/cloudsim/custom/
+
+# PDF paper Mishra dkk. (2022) berhak cipta Elsevier: simpan lokal, jangan di-commit
+A dynamic load scheduling in IaaS cloud using binary JAYA algorithm*.pdf
