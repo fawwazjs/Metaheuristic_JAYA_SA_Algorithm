@@ -143,8 +143,9 @@ export function KingdomMap() {
     { id: 'jaya', numeral: 'II', title: 'Algoritma JAYA', detail: 'Definisi · Karakteristik · Keunggulan & Kelemahan · Cara Kerja · Simulator', accent: 'forest' },
     { id: 'sa', numeral: 'III', title: 'Simulated Annealing', detail: 'Definisi · Karakteristik · Keunggulan & Kelemahan · Cara Kerja · Simulator & Visualisasi 3D', accent: 'ember' },
     { id: 'arena', numeral: 'IV', title: 'Perbandingan', detail: 'Tabel perbandingan dan simulasi berdampingan dengan anggaran evaluasi yang sama.', accent: 'gold' },
-    { id: 'arsip', numeral: 'V', title: 'Referensi', detail: 'Dua paper sumber materi presentasi.', accent: 'gold' },
-    { id: 'penutup', numeral: 'VI', title: 'Penutup', detail: 'Kelompok 4 Kelas C, Institut Teknologi Sepuluh Nopember.', accent: 'gold' },
+    { id: 'kode', numeral: 'V', title: 'Bedah Kode CloudSim', detail: 'Implementasi Java JAYA, SA, Evaluator, dan CloudSimRunner.', accent: 'gold' },
+    { id: 'arsip', numeral: 'VI', title: 'Referensi', detail: 'Dua paper sumber materi presentasi.', accent: 'gold' },
+    { id: 'penutup', numeral: 'VII', title: 'Penutup', detail: 'Kelompok 4 Kelas C, Institut Teknologi Sepuluh Nopember.', accent: 'gold' },
   ]
 
   return (

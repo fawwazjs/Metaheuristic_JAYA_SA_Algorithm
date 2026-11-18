@@ -581,6 +581,7 @@ export const navSections = [
   { id: 'jaya', label: 'JAYA', style: 'Algoritma JAYA' },
   { id: 'sa', label: 'SA', style: 'Simulated Annealing' },
   { id: 'arena', label: 'Perbandingan', style: 'Perbandingan' },
+  { id: 'kode', label: 'Kode', style: 'Bedah Kode' },
   { id: 'arsip', label: 'Referensi', style: 'Referensi' },
   { id: 'penutup', label: 'Penutup', style: 'Penutup' },
 ]

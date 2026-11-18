@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Navbar } from './components/layout/Navbar'
 import { Footer } from './components/layout/Footer'
 import { Hero, KingdomMap } from './components/content/Hero'
-import { IntroSection, ArenaSection, ReferenceSection, ClosingSection } from './components/content/Sections'
+import { IntroSection, ArenaSection, CodeSection, ReferenceSection, ClosingSection } from './components/content/Sections'
 import { JayaChapter } from './components/content/JayaChapter'
 import { SaChapter } from './components/content/SaChapter'
 import { CrestMonogram, FleurDeLis } from './components/ornaments/Ornaments'
@@ -105,6 +105,7 @@ export default function App() {
           <JayaChapter />
           <SaChapter />
           <ArenaSection />
+          <CodeSection />
           <ReferenceSection />
           <ClosingSection />
         </main>

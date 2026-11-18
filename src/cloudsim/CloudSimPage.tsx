@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Footer } from '../components/layout/Footer'
+import { SectionFrame } from '../components/layout/SectionFrame'
+import { AlgorithmCodeViewer } from '../components/content/AlgorithmCodeViewer'
 import { useSummary, type ScenarioSummary } from './data'
 import { keyFindings } from './replay'
 import { CloudSimHeader } from './components/CloudSimHeader'
@@ -87,6 +89,15 @@ export function CloudSimPage() {
                 <ScenarioPicker id="skenario-perbandingan" scenarios={summary.data.scenarios} value={scenario.id} onChange={setScenario} />
               }
             />
+            <SectionFrame
+              id="bedah-kode"
+              eyebrow="Implementasi Java"
+              title="Bedah Kode Implementasi CloudSim"
+              subtitle="Kode sumber asli untuk algoritma JAYA, SA, Evaluator makespan FIFO space-shared, dan runner simulasi CloudSim Plus 8.0.0."
+              motif="anvil"
+            >
+              <AlgorithmCodeViewer />
+            </SectionFrame>
             <GuideSection />
           </>
         )}

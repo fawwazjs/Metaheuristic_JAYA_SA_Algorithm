@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { id: 'jaya', label: 'JAYA', detail: 'Algoritma JAYA' },
   { id: 'sa', label: 'SA', detail: 'Simulated Annealing' },
   { id: 'arena', label: 'Perbandingan', detail: 'JAYA vs SA' },
+  { id: 'kode', label: 'Kode', detail: 'Bedah Kode' },
   { id: 'arsip', label: 'Referensi', detail: 'Sumber' },
   { id: 'penutup', label: 'Penutup', detail: 'Terima kasih' },
 ]

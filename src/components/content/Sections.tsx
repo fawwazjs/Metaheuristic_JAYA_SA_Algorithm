@@ -6,6 +6,7 @@ import { OrnamentDivider, CrestMonogram, FleurDeLis, StarMotif } from '../orname
 import { WaxSealish } from '../ornaments/WaxSealish'
 import { ParchmentCard } from '../ui/ParchmentCard'
 import { AccuracyNote } from './Blocks'
+import { AlgorithmCodeViewer } from './AlgorithmCodeViewer'
 
 export function IntroSection() {
   return (
@@ -56,6 +57,20 @@ export function ArenaSection() {
       motif="sword"
     >
       <CompareArena />
+    </SectionFrame>
+  )
+}
+
+export function CodeSection() {
+  return (
+    <SectionFrame
+      id="kode"
+      eyebrow="Implementasi · CloudSim Plus 8.0.0"
+      title="Bedah Kode: JAYA & Simulated Annealing"
+      subtitle="Implementasi kode sumber Java yang digunakan pada backend simulasi CloudSim Plus untuk penjadwalan cloudlet."
+      motif="anvil"
+    >
+      <AlgorithmCodeViewer />
     </SectionFrame>
   )
 }

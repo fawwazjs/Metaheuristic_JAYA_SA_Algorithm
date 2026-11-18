@@ -4,6 +4,7 @@ const LINKS = [
   { href: '#lingkungan', label: 'Lingkungan' },
   { href: '#replay', label: 'Replay' },
   { href: '#perbandingan', label: 'Perbandingan' },
+  { href: '#bedah-kode', label: 'Kode Java' },
   { href: '#cli', label: 'Cara Menjalankan' },
 ]
 
