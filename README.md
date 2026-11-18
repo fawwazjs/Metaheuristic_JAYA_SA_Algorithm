@@ -9,6 +9,14 @@ Materi disusun dari presentasi kuliah Metaheuristik **Kelompok 4 Kelas C, Instit
 
 Tema visualnya adalah **perkamen, kulit, dan emas** dengan ornamen klasik yang seluruhnya dibuat sendiri lewat CSS/SVG/canvas — tidak memakai aset berhak cipta.
 
+Video berikut memperlihatkan demonstrasi singkat aplikasi dan proses menjalankan simulasi metaheuristik yang dibahas dalam proyek ini.
+
+![Demo SOKA Metaheuristik](Assets/Demo%20SOKA%20Metaheuristik.gif)
+
+Berikut adalah link gdrive dari video tersebut jika terdapat kesalahan atau error dalam video tersebut:
+
+`https://drive.google.com/file/d/1xf-gSjBhG1NPwA3DUVk7xERyWxi3NxwY/view?usp=drive_link`
+
 ---
 
 ## Daftar Isi
@@ -149,6 +157,18 @@ Angka hasilnya selalu sama, karena seed tetap. Penjelasan lengkap, cuplikan laya
 | 2 | `./sim custom --dataset nasa --tasks 750 --vms 50 --algo jaya,rr --runs 1` | JAYA mencapai batas mutlak job terbesar di dataset paper | JAYA 874.160 s, RR 1.409.838 s |
 | 3 | `./sim custom --dataset gocj --tasks 300 --vms 20 --algo sa --runs 3` | SA pada skenario yang sama dengan contoh 1 | 1.002,3 ± 6,0 s (41% lebih rendah dari JAYA) |
 | 4 | `./sim custom --dataset gocj --tasks 750 --vms 10 --algo sa,sufferage,rr --runs 3` | SA hanya 0,26% di atas batas teoretis | SA 4.781,2 s, Sufferage 4.915,8 s, RR 20.326 s |
+
+Video demo GoCJ memperlihatkan proses menjalankan simulasi menggunakan dataset GoCJ melalui CLI, termasuk pemilihan konfigurasi dan keluaran proses penjadwalan.
+
+![Demo menjalankan dataset GoCJ](Assets/Demo%20Jalanin%20Dataset%20GoCJ.gif)
+
+Video demo NASA memperlihatkan proses yang sama menggunakan dataset NASA, sehingga hasil penjadwalan dapat diamati pada karakteristik beban kerja yang berbeda.
+
+![Demo menjalankan dataset NASA](Assets/Demo%20Jalanin%20Dataset%20NASA.gif)
+
+Berikut juga adalah link gdrive dari kedua video tersebut jika mengalami error ketika menjalankan videonya:
+
+`https://drive.google.com/drive/folders/1uxobWoPt79N93vorGqcDZca6GAYeh7Pg?usp=sharing`
 
 ### Temuan utama (352 run, semua tervalidasi di CloudSim)
 
